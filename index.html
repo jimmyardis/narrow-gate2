@@ -10,9 +10,8 @@
         :root {
             --navy: #0a192f;
             --white: #ffffff;
-            --light-grey: #f8fafc;
             --gold: #c5a059;
-            --muted: #64748b;
+            --overlay: rgba(10, 25, 47, 0.4);
         }
 
         body {
@@ -23,89 +22,85 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .serif, .quote { font-family: 'Playfair Display', serif; }
+        h1, h2, h3, .quote { font-family: 'Playfair Display', serif; }
 
         /* --- NAVIGATION --- */
         nav {
-            padding: 40px 8%;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 40px 60px;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: var(--white);
-            border-bottom: 1px solid #eee;
+            box-sizing: border-box;
         }
 
         .brand {
             font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 3px;
-            color: var(--navy);
+            color: white;
             text-transform: uppercase;
         }
 
-        /* --- HERO: DEFINITION STYLE --- */
+        /* --- HERO SECTION --- */
         header {
-            height: 80vh;
+            height: 100vh;
+            position: relative;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: var(--white);
-            color: var(--navy);
-            text-align: left;
-        }
-
-        .hero-definition-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            width: 80%;
-            max-width: 1100px;
-        }
-
-        .def-hero-column {
-            padding-left: 30px;
-            border-left: 1px solid rgba(10, 25, 47, 0.1);
-            animation: fadeIn 2s ease-out;
-        }
-
-        .def-hero-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            display: block;
-            color: var(--muted);
-        }
-
-        .def-hero-word {
-            font-size: 4.5rem;
-            margin: 0;
-            font-weight: 400;
-        }
-
-        .def-hero-meaning {
-            font-size: 2rem;
-            font-style: italic;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
-
-        /* --- TRANSITION SECTION --- */
-        .statement-finish {
-            padding: 100px 8%;
             text-align: center;
-            background-color: var(--light-grey);
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
+            background: linear-gradient(var(--overlay), var(--overlay)), 
+                        url('ionwaterfront.png'); 
+            background-size: cover;
+            background-position: center;
+            color: white;
+            box-sizing: border-box;
         }
 
-        .statement-finish h1 {
-            font-size: 3.5rem;
+        .hero-top {
+            position: absolute;
+            top: 25%;
+            max-width: 900px;
+            width: 90%;
+            animation: fadeIn 3s ease-out;
+        }
+
+        .hero-top h1 {
+            font-size: 3rem;
             font-style: italic;
             font-weight: 400;
             margin: 0;
-            color: var(--navy);
+            text-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+        }
+
+        .hero-bottom {
+            position: absolute;
+            bottom: 8%;
+            max-width: 900px;
+            width: 90%;
+            animation: fadeIn 3s ease-out;
+        }
+
+        .hero-bottom h1 {
+            font-size: 2.2rem;
+            font-style: italic;
+            font-weight: 400;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+        }
+
+        .scripture-ref {
+            letter-spacing: 4px;
+            font-weight: 300;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            display: block;
+            opacity: 0.8;
         }
 
         /* --- PORTFOLIO GRID --- */
@@ -150,20 +145,6 @@
             margin: 0;
         }
 
-        .cat-overlay p {
-            color: var(--gold);
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-
-        .cat-box:hover img { transform: scale(1.08); opacity: 0.4; }
-        .cat-box:hover .cat-overlay { background: rgba(10, 25, 47, 0.8); }
-        .cat-box:hover p { opacity: 1; transform: translateY(0); }
-
         /* --- PHILOSOPHY SECTION --- */
         .jacobs-section {
             padding: 120px 15%;
@@ -175,41 +156,41 @@
             font-size: 2.2rem;
             color: var(--navy);
             font-style: italic;
-            margin-bottom: 30px;
         }
 
         footer {
-            padding: 80px 8%;
+            padding: 60px 8%;
             background: var(--navy);
             color: white;
+            display: flex;
+            justify-content: space-between;
             font-size: 0.75rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            display: flex;
-            justify-content: space-between;
         }
 
-        /* --- FLUID RESPONSIVE FIXES --- */
+        /* --- MOBILE OPTIMIZATION BLOCK --- */
         @media (max-width: 768px) {
-            nav { padding: 20px 5%; flex-direction: column; gap: 10px; }
+            nav { padding: 20px 30px; }
             
-            .hero-definition-container { grid-template-columns: 1fr; gap: 40px; width: 90%; }
-            .def-hero-word { font-size: 10vw !important; }
-            .def-hero-meaning { font-size: 5vw !important; }
+            .hero-top { top: 15%; }
+            .hero-top h1 { font-size: 8vw !important; } /* Scales to screen width */
 
-            .statement-finish h1 { font-size: 8vw !important; padding: 0 5%; }
+            .hero-bottom { bottom: 5%; }
+            .hero-bottom h1 { font-size: 6vw !important; }
 
             .work-grid { grid-template-columns: 1fr; }
-            .cat-overlay h2 { font-size: 6vw !important; padding: 0 10px; text-align: center; }
+            .cat-overlay h2 { font-size: 7vw !important; padding: 0 10px; }
 
-            .jacobs-section blockquote { font-size: 6vw !important; width: 90%; margin: 0 auto 30px; }
-            
+            .jacobs-section { padding: 60px 10%; }
+            .jacobs-section blockquote { font-size: 6.5vw !important; width: 100%; }
+
             footer { flex-direction: column; gap: 20px; text-align: center; }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -217,58 +198,47 @@
 
     <nav>
         <div class="brand">Narrow Gate</div>
-        <div style="color: var(--muted); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;">Legacy & Design</div>
+        <div style="color: rgba(255,255,255,0.6); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 300;">Legacy & Design</div>
     </nav>
 
     <header>
-        <div class="hero-definition-container">
-            <div class="def-hero-column">
-                <span class="def-hero-label">Standard I.</span>
-                <h2 class="def-hero-word serif">Narrow.</h2>
-                <p class="def-hero-meaning">is the gate.</p>
-            </div>
-            <div class="def-hero-column">
-                <span class="def-hero-label">Standard II.</span>
-                <h2 class="def-hero-word serif">Difficult.</h2>
-                <p class="def-hero-meaning">is the way.</p>
-            </div>
+        <div class="hero-top">
+            <h1>"Enter through the narrow gate..."</h1>
+        </div>
+
+        <div class="hero-bottom">
+            <h1>"...for narrow is the gate and difficult is the way which leads to life."</h1>
+            <span class="scripture-ref">MATTHEW 7:13-14</span>
         </div>
     </header>
-
-    <section class="statement-finish">
-        <h1 class="serif">"...which leads to life."</h1>
-    </section>
 
     <div class="work-grid" id="portfolio">
         <div class="cat-box">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGDsQ80nRqIjJY7r_3O_7kIzx6_OxG0B5SyQ&s" alt="Neighborhoods">
             <div class="cat-overlay">
                 <h2>Neighborhoods</h2>
-                <p>I'On & Newpoint</p>
+                <p style="color:var(--gold); font-style:italic;">I'On & Newpoint</p>
             </div>
         </div>
-
         <div class="cat-box">
             <img src="https://bt-wpstatic.freetls.fastly.net/wp-content/blogs.dir/3/files/2013/04/5.jpg" alt="Restoration">
             <div class="cat-overlay">
                 <h2>Restoration</h2>
-                <p>Fort Sullivan</p>
+                <p style="color:var(--gold); font-style:italic;">Fort Sullivan</p>
             </div>
         </div>
-
         <div class="cat-box">
             <img src="https://images.squarespace-cdn.com/content/v1/59944cda03596ee46fd2af25/1520008910631-QZSKU0LHTNO7P5TWAS55/Morri+Sq-107.jpeg?format=2500w" alt="Infill">
             <div class="cat-overlay">
                 <h2>Urban Infill</h2>
-                <p>Morris Square</p>
+                <p style="color:var(--gold); font-style:italic;">Morris Square</p>
             </div>
         </div>
-
         <div class="cat-box">
             <img src="https://www.cnu.org/sites/default/files/Earls-court-plan.png" alt="Reuse">
             <div class="cat-overlay">
                 <h2>Adaptive Reuse</h2>
-                <p>Earl's Court</p>
+                <p style="color:var(--gold); font-style:italic;">Earl's Court</p>
             </div>
         </div>
     </div>
@@ -281,16 +251,12 @@
     </section>
 
     <footer>
-        <div>Places, especially centers of life | Narrow Gate</div>
+        <div>Places of Enduring Value | Narrow Gate</div>
         <div>Charleston, South Carolina</div>
     </footer>
 
     <script>
-        ScrollReveal().reveal('.def-hero-column, .cat-box, .statement-finish', { 
-            interval: 150, 
-            distance: '20px', 
-            origin: 'bottom' 
-        });
+        ScrollReveal().reveal('.cat-box', { interval: 150, distance: '20px', origin: 'bottom' });
     </script>
 </body>
 </html>
